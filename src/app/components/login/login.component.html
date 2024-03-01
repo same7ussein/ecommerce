@@ -1,0 +1,27 @@
+<section class="bg-main-light p-4 rounded my-3 w-75 mx-auto">
+    <h1 class="text-center">Login Now</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="handleLogin()">
+        <div>
+            <label for="email">Email :</label>
+            <input type="email" class="form-control" formControlName="email" id="email">
+            <div class="py-2 " *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.touched ">
+                <p class="text-danger m-0" *ngIf="loginForm.get('email')?.getError('required')">email is Required</p>
+                <p class="text-danger m-0" *ngIf="loginForm.get('email')?.getError('email')">Email is invalid</p>
+            </div>
+        </div>
+        <div>
+            <label for="password">Password :</label>
+            <input type="password" class="form-control" formControlName="password" id="password">
+            <div class="py-2 " *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched ">
+                <p class="text-danger m-0" *ngIf="loginForm.get('password')?.getError('required')">password is
+                    Required</p>
+                <p class="text-danger m-0" *ngIf="loginForm.get('password')?.getError('pattern')">password must start
+                    with
+                    upperCase then from 6 to 20</p>
+            </div>
+        </div>
+        <button type="submit" class="btn-main ms-auto d-block my-2"><span *ngIf="isloading" class="loader"></span>
+            Login</button>
+
+    </form>
+</section>

@@ -18,12 +18,17 @@ import { NavBlankComponent } from './components/nav-blank/nav-blank.component';
 import { AuthLayoutComponent } from './components/auth-layout/auth-layout.component';
 import { BlankLayoutComponent } from './components/blank-layout/blank-layout.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { NgToastModule } from 'ng-angular-popup';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { ToastrModule } from 'ngx-toastr';
+import { MainSliderComponent } from './components/main-slider/main-slider.component';
+import { CategorySliderComponent } from './components/category-slider/category-slider.component';
+import { ProductComponent } from './components/product/product.component';
+import { GalleriaModule } from 'primeng/galleria';
 
 @NgModule({
   declarations: [
@@ -43,6 +48,9 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     NavBlankComponent,
     AuthLayoutComponent,
     BlankLayoutComponent,
+    MainSliderComponent,
+    CategorySliderComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +62,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     NgbModule,
     BrowserAnimationsModule,
     CarouselModule,
+    ToastrModule.forRoot(),
+    GalleriaModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

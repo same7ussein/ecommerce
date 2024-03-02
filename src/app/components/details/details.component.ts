@@ -26,6 +26,8 @@ export class DetailsComponent implements OnInit {
           next: (response) => {
             this.ProductDetails = response.data;
             this.productCategoryDetials = response.data.category;
+            console.log(this.ProductDetails.images);
+            
           },
           error: (err: HttpErrorResponse) => {
             console.log(err);

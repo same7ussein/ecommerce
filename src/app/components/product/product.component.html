@@ -1,18 +1,18 @@
 <div class="product">
     <div class="p-2 cursor-pointer" [routerLink]="['/details',product._id]">
-        <img [src]="product.imageCover" class="w-100" [alt]="product.title">
-        <h3 class="h6 text-main"><i class="fa-solid fa-tag"></i> {{product.category?.name}}</h3>
+        <img [src]="product.imageCover" class="w-100" [alt]="product.title" >
+        <h3 class="h6 text-main font-sm mt-2"><i class="fa-solid fa-tag"></i> {{product.category?.name|lowercase}}</h3>
         <h4 class="h6" placement="top" [ngbTooltip]="product.title">
             {{product.title.split(" ").slice(0,2).join(' ')}}
         </h4>
         <div class="d-flex justify-content-between align-products-center">
-            <span>{{product.price}} EGP</span>
+            <span>{{product.price|currency:"EGP"}}</span>
             <div><i class="fas fa-star rating-color"></i>
                 <span class="text-muted">{{product.ratingsAverage}}</span>
             </div>
         </div>
     </div>
     <div class="p-2 pt-0">
-        <button class="btn-main w-100">Add to Cart</button>
+        <button (click)="addCart(product._id)" class="btn-main w-100">Add to Cart</button>
     </div>
 </div>

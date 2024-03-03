@@ -10,10 +10,17 @@
 
 <!-- products -->
 <section class="my-4">
-    <h2>Popular Products</h2>
+    <div class="row mb-2">
+        <div class="col-md-4">
+            <h2>Popular Products</h2>
+        </div>
+        <div class="col-md-8 d-flex justify-content-end">
+            <input type="search" class="form-control w-50" placeholder="Search..........." [(ngModel)]="searchTerm">
+        </div>
+    </div>
     <div class="row g-4">
-        <div class="col-md-2" *ngFor="let item of products.slice(0,12)">
-         <app-product [product]="item"></app-product>
+        <div class="col-md-2" *ngFor="let item of products|search:searchTerm">
+            <app-product [product]="item"></app-product>
         </div>
     </div>
 </section>

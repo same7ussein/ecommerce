@@ -2,6 +2,7 @@
 
 :root {
   --main-color: #0aad0a;
+  --shadow-color:rgba(10, 173, 10,.25);
   --light-color: #f0f3f2;
   --shadow: rgba(145, 158, 171, 0.2) 0px 2px 4px -1px,
     rgba(145, 158, 171, 0.14) 0px 4px 5px 0px,
@@ -87,4 +88,13 @@ a:hover {
 }
 .btn-main:hover {
   background-color: #11bd11;
+}
+
+
+.owl-theme .owl-dots .owl-dot.active span,
+.owl-theme .owl-dots .owl-dot:hover span {
+  background-color: var(--main-color) !important;
+}
+.form-control:focus {
+    box-shadow: 0 0 0 0.25rem var(--shadow-color);
 }

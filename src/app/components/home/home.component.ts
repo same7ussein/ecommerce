@@ -10,8 +10,7 @@ import { EcommerceDataService } from 'src/app/shared/services/ecommerce-data.ser
 })
 export class HomeComponent implements OnInit {
   products: Product[] = [];
-
-
+  searchTerm: string = '';
 
   constructor(private _EcommerceDataService: EcommerceDataService) {}
   ngOnInit(): void {

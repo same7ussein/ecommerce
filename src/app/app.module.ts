@@ -52,7 +52,7 @@ import { SearchPipe } from './shared/pipes/search.pipe';
     MainSliderComponent,
     CategorySliderComponent,
     ProductComponent,
-    SearchPipe
+    SearchPipe,
   ],
   imports: [
     BrowserModule,

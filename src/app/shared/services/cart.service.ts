@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class CartService {
   headers: any = {
-    token: localStorage.getItem('eToken'),
+    token: localStorage.getItem('etoken'),
   };
   constructor(private _HttpClient: HttpClient) {}
   addToCart(idProduct: string): Observable<any> {
@@ -26,5 +26,14 @@ export class CartService {
     return this._HttpClient.get(`https://ecommerce.routemisr.com/api/v1/cart`, {
       headers: this.headers,
     });
+  }
+
+  removeItemFromCart(id: string): Observable<any> {
+    return this._HttpClient.delete(
+      `https://ecommerce.routemisr.com/api/v1/cart/${id}`,
+      {
+        headers: this.headers,
+      }
+    );
   }
 }

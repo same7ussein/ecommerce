@@ -3,6 +3,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EcommerceDataService } from 'src/app/shared/services/ecommerce-data.service';
+import { CartService } from 'src/app/shared/services/cart.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-details',
@@ -14,7 +16,9 @@ export class DetailsComponent implements OnInit {
   productCategoryDetials: Category = {} as Category;
   constructor(
     private _ActivatedRoute: ActivatedRoute,
-    private _EcommerceDataService: EcommerceDataService
+    private _EcommerceDataService: EcommerceDataService,
+    private _CartService: CartService,
+    private _ToastrService: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -26,8 +30,7 @@ export class DetailsComponent implements OnInit {
           next: (response) => {
             this.ProductDetails = response.data;
             this.productCategoryDetials = response.data.category;
-            console.log(this.ProductDetails.images);
-            
+            console.log(this.ProductDetails);
           },
           error: (err: HttpErrorResponse) => {
             console.log(err);
@@ -40,4 +43,14 @@ export class DetailsComponent implements OnInit {
     });
   }
 
+  addCart(idProduct: string): void {
+    this._CartService.addToCart(idProduct).subscribe({
+      next: (res) => {
+        this._ToastrService.success(res.message);
+      },
+      error: (err: HttpErrorResponse) => {
+        console.log(err);
+      },
+    });
+  }
 }

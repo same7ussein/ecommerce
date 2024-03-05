@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
-import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 import { CartService } from 'src/app/shared/services/cart.service';
 
 @Component({
@@ -10,17 +10,19 @@ import { CartService } from 'src/app/shared/services/cart.service';
 })
 export class ProductComponent {
   @Input() product: any;
-  constructor(private _CartService: CartService) {}
+  constructor(
+    private _CartService: CartService,
+    private _ToastrService: ToastrService
+  ) {}
 
   addCart(idProduct: string): void {
     this._CartService.addToCart(idProduct).subscribe({
       next: (res) => {
-        console.log(res);
+        this._ToastrService.success(res.message)
       },
       error: (err: HttpErrorResponse) => {
         console.log(err);
       },
     });
   }
-
 }

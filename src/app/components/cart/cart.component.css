@@ -1,0 +1,12 @@
+.cart{
+    max-height: 500px;
+    overflow: auto;
+}
+
+::-webkit-scrollbar {
+    width: 10px; 
+}
+::-webkit-scrollbar-thumb {
+    background: var(--main-color); 
+    border-radius: 5px; 
+}

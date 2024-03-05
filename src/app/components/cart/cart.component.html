@@ -19,9 +19,9 @@
                 </div>
                 <!-- btn -->
                 <div>
-                    <button class="btn text-main border-success">+</button>
+                    <button (click)="changeCount(item.product._id,item.count+1)" class="btn text-main border-success">+</button>
                     <span class="m-0 px-3">{{item.count}}</span>
-                    <button class="btn text-main border-success">-</button>
+                    <button (click)="changeCount(item.product._id,item.count-1)" class="btn text-main border-success">-</button>
                 </div>
             </div>
         </div>

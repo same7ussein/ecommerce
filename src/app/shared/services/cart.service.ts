@@ -36,4 +36,16 @@ export class CartService {
       }
     );
   }
+
+  updateCartProduct(idProduct:string,newCount:number): Observable<any> {
+    return this._HttpClient.put(
+      `https://ecommerce.routemisr.com/api/v1/cart/${idProduct}`,
+      {
+        count: newCount,
+      },
+      {
+        headers:this.headers
+      }
+    );
+  }
 }

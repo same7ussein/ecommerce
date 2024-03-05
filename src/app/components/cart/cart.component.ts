@@ -20,7 +20,6 @@ export class CartComponent implements OnInit {
       next: (res) => {
         this.cartDetails = res.data;
         console.log(this.cartDetails);
-        
       },
       error: (err: HttpErrorResponse) => {
         console.log(err);
@@ -38,5 +37,18 @@ export class CartComponent implements OnInit {
         console.log(err);
       },
     });
+  }
+
+  changeCount(id: string, count: number): void {
+    if (count > 0) {
+      this._CartService.updateCartProduct(id, count).subscribe({
+        next: (res) => {
+          this.cartDetails = res.data;
+        },
+        error: (err: HttpErrorResponse) => {
+          console.log(err);
+        },
+      });
+    }
   }
 }

@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgToastService } from 'ng-angular-popup';
+import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
@@ -33,7 +33,10 @@ export class RegisterComponent {
     ],
     rePassword: [
       '',
-      [Validators.required, Validators.pattern(/^[A-Z][a-z0-9]{6,20}$/)],
+      [
+        RxwebValidators.required(),
+        RxwebValidators.compare({ fieldName: 'password' }),
+      ],
     ],
 
     phone: [

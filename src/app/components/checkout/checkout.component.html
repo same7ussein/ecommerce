@@ -1,0 +1,41 @@
+<section class="bg-main-light p-4 rounded-3 my-3 shadow w-50 mx-auto">
+    <form [formGroup]="chekout">
+        <div>
+            <label for="details">Details</label>
+            <textarea id="details" class="form-control" formControlName="details"></textarea>
+            <div class="py-2" *ngIf="chekout.get('details')?.errors && chekout.get('details')?.touched">
+                <p class="text-danger m-0" *ngIf="chekout.get('details')?.getError('required')">Details is Required</p>
+                <p class="text-danger m-0" *ngIf="chekout.get('details')?.getError('minlength')">Details minLength 20 characters
+                </p>
+                <p class="text-danger m-0" *ngIf="chekout.get('details')?.getError('maxlength')">Details maxLength: 100
+                    characters</p>
+            </div>
+        </div>
+        <div>
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" class="form-control" formControlName="phone">
+            <div class="py-2" *ngIf="chekout.get('phone')?.errors && chekout.get('phone')?.touched">
+                <p class="text-danger m-0" *ngIf="chekout.get('phone')?.getError('required')">Phone number is required
+                </p>
+                <p class="text-danger m-0" *ngIf="chekout.get('phone')?.getError('pattern')">Please enter a valid phone
+                    number(e.g.,01123456789)</p>
+            </div>
+        </div>
+        <div>
+            <label for="city">City</label>
+            <input type="text" id="city" class="form-control" formControlName="city">
+            <div class="py-2" *ngIf="chekout.get('city')?.errors && chekout.get('city')?.touched">
+                <p class="text-danger m-0" *ngIf="chekout.get('city')?.getError('required')">City is required</p>
+                <p class="text-danger m-0" *ngIf="chekout.get('city')?.getError('minlength')">City name minLength:
+                    5 characters</p>
+                <p class="text-danger m-0" *ngIf="chekout.get('city')?.getError('maxlength')">City name maxLength: 30
+                    characters</p>
+            </div>
+        </div>
+        <div class="d-flex flex-wrap gap-4 pt-3">
+            <button (click)="onlinecheckout()" class="btn-main py-0">Online Payment <img
+                    src="./assets/images/visa-1.svg"></button>
+            <button (click)="cashcheckout()" class="btn-main py-0">Cash Payment</button>
+        </div>
+    </form>
+</section>

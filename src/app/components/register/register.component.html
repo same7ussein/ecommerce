@@ -4,17 +4,16 @@
         <div>
             <label for="name">Name :</label>
             <input type="text" class="form-control" formControlName="name" id="name">
-           <div class="py-2 " *ngIf="registerForm.get('name')?.errors && registerForm.get('name')?.touched">
-            <p class="text-danger m-0" *ngIf="registerForm.get('name')?.getError('required')">Name is Required</p>
-            <p class="text-danger m-0" *ngIf="registerForm.get('name')?.getError('minlength')">Min Length is 3 </p>
-            <p class="text-danger m-0" *ngIf="registerForm.get('name')?.getError('maxlength')">Max Length is 20</p>
-           </div>
+            <div class="py-2 " *ngIf="registerForm.get('name')?.errors && registerForm.get('name')?.touched">
+                <p class="text-danger m-0" *ngIf="registerForm.get('name')?.getError('required')">Name is Required</p>
+                <p class="text-danger m-0" *ngIf="registerForm.get('name')?.getError('minlength')">Min Length is 3 </p>
+                <p class="text-danger m-0" *ngIf="registerForm.get('name')?.getError('maxlength')">Max Length is 20</p>
+            </div>
         </div>
         <div>
             <label for="email">Email :</label>
             <input type="email" class="form-control" formControlName="email" id="email">
-            <div class="py-2 "
-                *ngIf="registerForm.get('email')?.errors && registerForm.get('email')?.touched ">
+            <div class="py-2 " *ngIf="registerForm.get('email')?.errors && registerForm.get('email')?.touched ">
                 <p class="text-danger m-0" *ngIf="registerForm.get('email')?.getError('required')">email is Required</p>
                 <p class="text-danger m-0" *ngIf="registerForm.get('email')?.getError('email')">Email is invalid</p>
             </div>
@@ -22,35 +21,38 @@
         <div>
             <label for="password">Password :</label>
             <input type="password" class="form-control" formControlName="password" id="password">
-            <div class="py-2 "
-                *ngIf="registerForm.get('password')?.errors && registerForm.get('password')?.touched ">
-                <p class="text-danger m-0" *ngIf="registerForm.get('password')?.getError('required')">password is Required</p>
-                <p class="text-danger m-0" *ngIf="registerForm.get('password')?.getError('pattern')">password must start with
+            <div class="py-2 " *ngIf="registerForm.get('password')?.errors && registerForm.get('password')?.touched ">
+                <p class="text-danger m-0" *ngIf="registerForm.get('password')?.getError('required')">password is
+                    Required</p>
+                <p class="text-danger m-0" *ngIf="registerForm.get('password')?.getError('pattern')">password must start
+                    with
                     upperCase then from 6 to 20</p>
             </div>
         </div>
         <div>
             <label for="rePassword">Confirm Password :</label>
             <input type="password" class="form-control" formControlName="rePassword" id="rePassword">
-            <div class="py-2 "
-                *ngIf="registerForm.get('rePassword')?.errors && registerForm.get('rePassword')?.touched">
-                <p class="text-danger m-0" *ngIf="registerForm.get('rePassword')?.getError('required')">Confirm Password is Required
-                </p>
-                <p class="text-danger m-0" *ngIf="registerForm.get('rePassword')?.getError('pattern')">Confirm Password must start
-                    with upperCase then from 6 to 20</p>
+            <div class="py-2" *ngIf="registerForm.get('rePassword')?.errors && registerForm.get('rePassword')?.touched">
+                <p class="text-danger m-0" *ngIf="registerForm.get('rePassword')?.getError('required')">Confirm password
+                    is
+                    Required</p>
+                <p class="text-danger m-0"
+                    *ngIf="registerForm.get('rePassword')?.getError('compare') && !registerForm.get('rePassword')?.getError('required')">
+                    Passwords do not match</p>
             </div>
         </div>
+
         <div>
             <label for="phone">Phone :</label>
             <input type="tel" class="form-control" formControlName="phone" id="phone">
-            <div class="py-2 "
-                *ngIf="registerForm.get('phone')?.errors && registerForm.get('phone')?.touched">
+            <div class="py-2 " *ngIf="registerForm.get('phone')?.errors && registerForm.get('phone')?.touched">
                 <p class="text-danger m-0" *ngIf="registerForm.get('phone')?.getError('required')">phone is Required</p>
-                <p class="text-danger m-0" *ngIf="registerForm.get('phone')?.getError('pattern')">Accept only Egypt Phone Numbers</p>
+                <p class="text-danger m-0" *ngIf="registerForm.get('phone')?.getError('pattern')">Accept only Egypt
+                    Phone Numbers</p>
             </div>
         </div>
-        <button  type="submit" class="btn-main ms-auto d-block my-2"><span *ngIf="isloading"  class="loader"></span> SignUp</button>
-     
+        <button type="submit" class="btn-main ms-auto d-block my-2"><span *ngIf="isloading" class="loader"></span>
+            SignUp</button>
+
     </form>
 </section>
-

@@ -28,8 +28,10 @@ import { ToastrModule } from 'ngx-toastr';
 import { MainSliderComponent } from './components/main-slider/main-slider.component';
 import { CategorySliderComponent } from './components/category-slider/category-slider.component';
 import { ProductComponent } from './components/product/product.component';
-import { GalleriaModule } from 'primeng/galleria';
 import { SearchPipe } from './shared/pipes/search.pipe';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { AllordersComponent } from './components/allorders/allorders.component';
+import { ForgetpasswordComponent } from './components/forgetpassword/forgetpassword.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,9 @@ import { SearchPipe } from './shared/pipes/search.pipe';
     CategorySliderComponent,
     ProductComponent,
     SearchPipe,
+    CheckoutComponent,
+    AllordersComponent,
+    ForgetpasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,7 +70,6 @@ import { SearchPipe } from './shared/pipes/search.pipe';
     BrowserAnimationsModule,
     CarouselModule,
     ToastrModule.forRoot(),
-    GalleriaModule,
     FormsModule,
   ],
   providers: [],

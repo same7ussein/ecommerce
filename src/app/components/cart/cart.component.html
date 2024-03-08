@@ -1,7 +1,10 @@
-<section class="cart w-75 mx-auto bg-main-light p-3 rounded-3 my-2">
-    <h1>Shop Cart</h1>
-    <p class="text-main">Total Price: {{cartDetails.totalCartPrice}} EGP</p>
-
+<section class="cart w-75 mx-auto bg-main-light p-3 rounded-3 my-2" *ngIf="cartDetails; else msg">
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>Shop Cart</h1>
+        <button (click)="clearCart()" class="btn btn-sm btn-outline-danger">
+            <i class="fa-regular fa-trash-can"></i> Clear All
+        </button>
+    </div>
     <!-- cart items -->
     <div class="row border-bottom py-3 " *ngFor="let item of cartDetails.products">
         <div class="col-md-1 rounded-5 overflow-hidden">
@@ -14,16 +17,31 @@
                 <div>
                     <h3 class="h5">{{item.product.title}}</h3>
                     <p class="text-main mb-1">{{item.price}} EGP</p>
-                    <button (click)="removeProduct(item.product._id)" class="text-main border-0 p-0"><i
-                            class="fa-regular fa-trash-can"></i> remove</button>
+                    <button #removebtn (click)="removeProduct(item.product._id,removebtn)"
+                        class="text-main border-0 p-0"><i class="fa-regular fa-trash-can"></i> remove</button>
                 </div>
                 <!-- btn -->
                 <div>
-                    <button (click)="changeCount(item.product._id,item.count+1)" class="btn text-main border-success">+</button>
+                    <button (click)="changeCount(item.product._id,item.count+1)"
+                        class="btn text-main border-success">+</button>
                     <span class="m-0 px-3">{{item.count}}</span>
-                    <button (click)="changeCount(item.product._id,item.count-1)" class="btn text-main border-success">-</button>
+                    <button (click)="changeCount(item.product._id,item.count-1)"
+                        class="btn text-main border-success">-</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <button [routerLink]="['/checkout',cartDetails._id]" routerLinkActive="router-link-active"
+        class="btn-main my-3">checkOut: {{cartDetails.totalCartPrice}} EGP</button>
 </section>
+
+<ng-template #msg>
+
+    <div class="text-center">
+        <img src="https://i.imgur.com/dCdflKN.png" width="130" height="130" class="img-fluid mb-4 mr-3">
+        <h3><strong>Your Cart is Empty</strong></h3>
+        <h4>Add something to make me happy :)</h4>
+        <button class="btn-main" routerLink="/home">continue shopping</button>
+    </div>
+</ng-template>

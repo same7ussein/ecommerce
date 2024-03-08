@@ -37,7 +37,28 @@ export class AuthService {
   logOutUser(): void {
     if (localStorage.getItem('etoken')) {
       localStorage.removeItem('etoken');
-      this._Router.navigate(['/login'])
+      this._Router.navigate(['/login']);
     }
+  }
+
+  forgetPassword(userData: object): Observable<any> {
+    return this._HttpClient.post(
+      `https://ecommerce.routemisr.com/api/v1/auth/forgotPasswords`,
+      userData
+    );
+  }
+
+  verifyPassword(userData: object): Observable<any> {
+    return this._HttpClient.post(
+      `https://ecommerce.routemisr.com/api/v1/auth/verifyResetCode`,
+      userData
+    );
+  }
+
+  resetPassword(newPassword:object): Observable<any>{
+    return this._HttpClient.put(
+      'https://ecommerce.routemisr.com/api/v1/auth/resetPassword',
+      newPassword
+    );
   }
 }

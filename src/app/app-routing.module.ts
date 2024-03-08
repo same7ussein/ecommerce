@@ -1,3 +1,4 @@
+import { ForgetpasswordComponent } from './components/forgetpassword/forgetpassword.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProductsComponent } from './components/products/products.component';
 import { NgModule } from '@angular/core';
@@ -12,6 +13,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { authGuard } from './shared/guards/auth.guard';
 import { DetailsComponent } from './components/details/details.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { AllordersComponent } from './components/allorders/allorders.component';
 
 const routes: Routes = [
   {
@@ -23,17 +26,23 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path: 'cart', component: CartComponent },
       { path: 'products', component: ProductsComponent },
-      {path:'details/:id',component:DetailsComponent},
+      { path: 'details/:id', component: DetailsComponent },
+      { path: 'checkout/:id', component: CheckoutComponent },
       { path: 'categories', component: CategoriesComponent },
       { path: 'brands', component: BrandsComponent },
+      { path: 'allorders', component: AllordersComponent },
     ],
   },
   {
     path: '',
     component: AuthLayoutComponent,
     children: [
-      { path: 'login', component: LoginComponent },
+      {
+        path: 'login',
+        component: LoginComponent,
+      },
       { path: 'signup', component: RegisterComponent },
+      { path: 'forgetPassword', component: ForgetpasswordComponent },
     ],
   },
   { path: '**', component: NotfoundComponent },

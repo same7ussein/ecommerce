@@ -18,7 +18,8 @@ export class ProductComponent {
   addCart(idProduct: string): void {
     this._CartService.addToCart(idProduct).subscribe({
       next: (res) => {
-        this._ToastrService.success(res.message)
+        this._ToastrService.success(res.message);
+        this._CartService.cartNumber.next(res.numOfCartItems);
       },
       error: (err: HttpErrorResponse) => {
         console.log(err);

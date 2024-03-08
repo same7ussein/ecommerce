@@ -7,7 +7,6 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgToastService } from 'ng-angular-popup';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
@@ -40,10 +39,7 @@ export class LoginComponent {
         next: (response) => {
           if (response.message == 'success') {
             this.isloading = false;
-            this._ToastrService.success(
-              'login Successfully'
-            );
-            
+            this._ToastrService.success('login Successfully');
             localStorage.setItem('etoken', response.token);
             this._AuthService.decodeUserData();
             this._Router.navigate(['/home']);
@@ -51,7 +47,7 @@ export class LoginComponent {
         },
         error: (err: HttpErrorResponse) => {
           this.isloading = false;
-          this._ToastrService.success(err.error.message);
+          this._ToastrService.error(err.error.message);
         },
       });
     } else {

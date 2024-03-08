@@ -2,7 +2,7 @@
 
 :root {
   --main-color: #0aad0a;
-  --shadow-color:rgba(10, 173, 10,.25);
+  --shadow-color: rgba(10, 173, 10, 0.25);
   --light-color: #f0f3f2;
   --shadow: rgba(145, 158, 171, 0.2) 0px 2px 4px -1px,
     rgba(145, 158, 171, 0.14) 0px 4px 5px 0px,
@@ -90,11 +90,37 @@ a:hover {
   background-color: #11bd11;
 }
 
-
 .owl-theme .owl-dots .owl-dot.active span,
 .owl-theme .owl-dots .owl-dot:hover span {
   background-color: var(--main-color) !important;
 }
 .form-control:focus {
-    box-shadow: 0 0 0 0.25rem var(--shadow-color);
+  box-shadow: 0 0 0 0.25rem var(--shadow-color);
+}
+
+/* loading in buttons */
+.loader {
+  width: 18px;
+  height: 18px;
+  border: 3px solid #fff;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  top: 3px;
+  left: -5px;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.toast-message {
+  font-size: 12px !important;
 }

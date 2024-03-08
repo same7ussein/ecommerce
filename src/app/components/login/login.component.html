@@ -20,8 +20,11 @@
                     upperCase then from 6 to 20</p>
             </div>
         </div>
-        <button type="submit" class="btn-main ms-auto d-block my-2"><span *ngIf="isloading" class="loader"></span>
-            Login</button>
+        <div class="d-flex flex-wrap">
+            <button routerLink="/forgetPassword" class="border-0 text-main"> forget the Password?</button>
+            <button type="submit" class="btn-main ms-auto d-block my-2"><span *ngIf="isloading" class="loader"></span>
+                Login</button>
 
+        </div>
     </form>
 </section>

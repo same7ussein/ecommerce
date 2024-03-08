@@ -11,39 +11,24 @@
                     <a class="nav-link text-capitalize" routerLink="home" routerLinkActive="active-link">home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-capitalize" routerLink="cart" routerLinkActive="active-link">cart</a>
+                    <a class="nav-link text-capitalize" routerLink="products"
+                        routerLinkActive="active-link">products</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-capitalize" routerLink="products" routerLinkActive="active-link">products</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-capitalize" routerLink="categories" routerLinkActive="active-link">categories</a>
+                    <a class="nav-link text-capitalize" routerLink="categories"
+                        routerLinkActive="active-link">categories</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-capitalize" routerLink="brands" routerLinkActive="active-link">brands</a>
                 </li>
-               
-            </ul>
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link"><i class="fab fa-instagram"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"><i class="fab fa-facebook"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"><i class="fab fa-tiktok"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"><i class="fab fa-twitter"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"><i class="fab fa-linkedin"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"><i class="fab fa-youtube"></i></a>
-                </li>
 
+            </ul>
+            <ul class="navbar-nav ms-auto mt-2 mt-lg-0 align-items-center">
+                <li class="nav-item">
+                    <a routerLink="/cart" class="position-relative"><i class="fas fa-cart-shopping text-main fa-2x"></i>
+                        <span class="badge bg-info cartnumber">{{cartNumber}}</span>
+                    </a>
+                </li>
                 <li class="nav-item" (click)="logOutUser()">
                     <span class="nav-link cursor-pointer">SignOut</span>
                 </li>

@@ -36,6 +36,7 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { CategoryitemComponent } from './components/categoryitem/categoryitem.component';
 import { CategorydetailsComponent } from './components/categorydetails/categorydetails.component';
 import { BrandComponent } from './components/brand/brand.component';
+import { WishlistComponent } from './components/wishlist/wishlist.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { BrandComponent } from './components/brand/brand.component';
     CategoryitemComponent,
     CategorydetailsComponent,
     BrandComponent,
+    WishlistComponent,
   ],
   imports: [
     BrowserModule,

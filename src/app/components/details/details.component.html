@@ -13,8 +13,10 @@
 
                     <div class="d-flex justify-content-between align-items-center">
                         <span>{{ProductDetails.price}} EGP</span>
-                        <div><i class="fas fa-star rating-color"></i>
+                        <div><i [class.rating-color]="ProductDetails.ratingsAverage >= num"
+                                *ngFor="let num of [1,2,3,4,5]" class="fas fa-star"></i>
                             <span class="text-muted">{{ProductDetails.ratingsAverage}}</span>
+
                         </div>
                     </div>
                     <button class="btn-main w-100" (click)="addCart(ProductDetails._id)">Add to Cart</button>

@@ -16,6 +16,7 @@ import { DetailsComponent } from './components/details/details.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { AllordersComponent } from './components/allorders/allorders.component';
 import { CategorydetailsComponent } from './components/categorydetails/categorydetails.component';
+import { WishlistComponent } from './components/wishlist/wishlist.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,7 @@ const routes: Routes = [
       { path: 'checkout/:id', component: CheckoutComponent },
       { path: 'categories', component: CategoriesComponent },
       { path: 'brands', component: BrandsComponent },
+      { path: 'wishlist', component: WishlistComponent },
       { path: 'allorders', component: AllordersComponent },
     ],
   },

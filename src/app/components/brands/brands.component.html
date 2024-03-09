@@ -1,1 +1,7 @@
-<p>brands works!</p>
+<section>
+    <div class="row g-4 mb-3">
+        <div class="col-md-3" *ngFor="let item of allBrand">
+            <app-brand class="cursor-pointer" [brand]="item"></app-brand>
+        </div>
+    </div>
+</section>

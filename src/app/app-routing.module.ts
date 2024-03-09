@@ -15,6 +15,7 @@ import { authGuard } from './shared/guards/auth.guard';
 import { DetailsComponent } from './components/details/details.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { AllordersComponent } from './components/allorders/allorders.component';
+import { CategorydetailsComponent } from './components/categorydetails/categorydetails.component';
 
 const routes: Routes = [
   {
@@ -26,7 +27,8 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path: 'cart', component: CartComponent },
       { path: 'products', component: ProductsComponent },
-      { path: 'details/:id', component: DetailsComponent },
+      { path: 'product/details/:id', component: DetailsComponent },
+      { path: 'category/details/:id', component: CategorydetailsComponent },
       { path: 'checkout/:id', component: CheckoutComponent },
       { path: 'categories', component: CategoriesComponent },
       { path: 'brands', component: BrandsComponent },

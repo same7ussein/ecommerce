@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   constructor(private _EcommerceDataService: EcommerceDataService) {}
   ngOnInit(): void {
     // get all products
-    this._EcommerceDataService.getAllProducts().subscribe({
+    this._EcommerceDataService.getAllProducts(1).subscribe({
       next: (response) => {
         this.products = response.data;
       },

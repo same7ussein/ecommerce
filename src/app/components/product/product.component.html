@@ -1,13 +1,14 @@
 <div class="product">
-    <div class="p-2 cursor-pointer" [routerLink]="['/details',product._id]">
-        <img [src]="product.imageCover" class="w-100" [alt]="product.title" >
+    <div class="p-2 cursor-pointer" [routerLink]="['/product/details',product._id]">
+        <img [src]="product.imageCover" class="w-100" [alt]="product.title">
         <h3 class="h6 text-main font-sm mt-2"><i class="fa-solid fa-tag"></i> {{product.category?.name|lowercase}}</h3>
         <h4 class="h6" placement="top" [ngbTooltip]="product.title">
             {{product.title.split(" ").slice(0,2).join(' ')}}
         </h4>
         <div class="d-flex justify-content-between align-products-center">
             <span>{{product.price}} EGP</span>
-            <div><i class="fas fa-star rating-color"></i>
+            <div><i [class.rating-color]="product.ratingsAverage >= num" *ngFor="let num of [1,2,3,4,5]"
+                    class="fas fa-star"></i>
                 <span class="text-muted">{{product.ratingsAverage}}</span>
             </div>
         </div>

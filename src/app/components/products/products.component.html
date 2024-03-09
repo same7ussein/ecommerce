@@ -1,1 +1,11 @@
-<p>products works!</p>
+<section>
+    <div class="row g-4 mb-3">
+        <div class="col-md-2" *ngFor="let item of products">
+            <app-product [product]="item"></app-product>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <ngb-pagination [collectionSize]="totalPages" [(page)]="currentPage" [boundaryLinks]="true"
+            (pageChange)="onPageChange($event)" />
+    </div>
+</section>

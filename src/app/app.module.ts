@@ -32,6 +32,10 @@ import { SearchPipe } from './shared/pipes/search.pipe';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { AllordersComponent } from './components/allorders/allorders.component';
 import { ForgetpasswordComponent } from './components/forgetpassword/forgetpassword.component';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { CategoryitemComponent } from './components/categoryitem/categoryitem.component';
+import { CategorydetailsComponent } from './components/categorydetails/categorydetails.component';
+import { BrandComponent } from './components/brand/brand.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +62,9 @@ import { ForgetpasswordComponent } from './components/forgetpassword/forgetpassw
     CheckoutComponent,
     AllordersComponent,
     ForgetpasswordComponent,
+    CategoryitemComponent,
+    CategorydetailsComponent,
+    BrandComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,6 +78,7 @@ import { ForgetpasswordComponent } from './components/forgetpassword/forgetpassw
     CarouselModule,
     ToastrModule.forRoot(),
     FormsModule,
+    NgbPaginationModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

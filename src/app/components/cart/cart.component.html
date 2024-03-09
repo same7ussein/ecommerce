@@ -14,8 +14,8 @@
         <div class="col-md-11">
             <div class="d-flex justify-content-between align-items-center">
                 <!-- details -->
-                <div>
-                    <h3 class="h5">{{item.product.title}}</h3>
+                <div class="">
+                    <h3 class="h5">{{item.product.title.split(" ").slice(0,4).join(" ")}}</h3>
                     <p class="text-main mb-1">{{item.price}} EGP</p>
                     <button #removebtn (click)="removeProduct(item.product._id,removebtn)"
                         class="text-main border-0 p-0"><i class="fa-regular fa-trash-can"></i> remove</button>

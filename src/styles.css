@@ -124,3 +124,28 @@ a:hover {
 .toast-message {
   font-size: 12px !important;
 }
+
+/* pagination */
+.active > .page-link,
+.page-link.active {
+  color: #fff;
+  background-color: var(--main-color);
+  border-color: var(--main-color);
+}
+
+.page-link {
+  color: var(--main-color);
+}
+
+.page-link:focus {
+  color: #fff;
+  box-shadow: none;
+}
+
+.page-link:hover {
+  color: var(--main-color);
+}
+
+.page-item.active .page-link:hover{
+  color: #fff;
+}

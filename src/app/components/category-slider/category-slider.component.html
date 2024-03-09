@@ -2,7 +2,7 @@
     <ng-container *ngFor="let item of categories">
         <ng-template carouselSlide>
             <!-- items -->
-            <div class="text-center">
+            <div class="text-center" [routerLink]="['/category/details/',item._id]">
                 <img [src]="item.image" height="200" [alt]="item.name">
                 <h3 class="h5 mt-2">{{item.name}}</h3>
             </div>

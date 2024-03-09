@@ -7,9 +7,9 @@ import { Observable } from 'rxjs';
 })
 export class EcommerceDataService {
   constructor(private _HttpClient: HttpClient) {}
-  getAllProducts(): Observable<any> {
+  getAllProducts(numberOfPage: number, limit: number = 40): Observable<any> {
     return this._HttpClient.get(
-      'https://ecommerce.routemisr.com/api/v1/products'
+      `https://ecommerce.routemisr.com/api/v1/products?limit=${limit}&page=${numberOfPage}`
     );
   }
 
@@ -19,9 +19,21 @@ export class EcommerceDataService {
     );
   }
 
-  getCategories():Observable<any> {
+  getCategories(): Observable<any> {
     return this._HttpClient.get(
       'https://ecommerce.routemisr.com/api/v1/categories'
+    );
+  }
+
+  getAllSubCategory(): Observable<any> {
+    return this._HttpClient.get(
+      `https://ecommerce.routemisr.com/api/v1/subcategories`
+    );
+  }
+
+  getAllBrand(): Observable<any> {
+    return this._HttpClient.get(
+      `https://ecommerce.routemisr.com/api/v1/brands`
     );
   }
 }

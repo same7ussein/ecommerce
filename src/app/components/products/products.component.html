@@ -1,4 +1,4 @@
-<section>
+<section *ngIf="products.length>0 else noproduct">
     <div class="row g-4 mb-3">
         <div class="col-md-2" *ngFor="let item of products">
             <app-product [product]="item"></app-product>
@@ -9,3 +9,10 @@
             (pageChange)="onPageChange($event)" />
     </div>
 </section>
+
+<ng-template #noproduct>
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <img src="./assets/images/noproduct.jpeg" class="w-25" alt="no product">
+        <button class="btn-main my-3" routerLink="/home">Go to Shopping</button>
+    </div>
+</ng-template>

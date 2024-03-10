@@ -15,8 +15,9 @@ import { authGuard } from './shared/guards/auth.guard';
 import { DetailsComponent } from './components/details/details.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { AllordersComponent } from './components/allorders/allorders.component';
-import { CategorydetailsComponent } from './components/categorydetails/categorydetails.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
+import { CategoryProductComponent } from './components/category-product/category-product.component';
+import { BrandProductsComponent } from './components/brand-products/brand-products.component';
 
 const routes: Routes = [
   {
@@ -25,16 +26,41 @@ const routes: Routes = [
     component: BlankLayoutComponent,
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
-      { path: 'home', component: HomeComponent },
-      { path: 'cart', component: CartComponent },
-      { path: 'products', component: ProductsComponent },
-      { path: 'product/details/:id', component: DetailsComponent },
-      { path: 'category/details/:id', component: CategorydetailsComponent },
-      { path: 'checkout/:id', component: CheckoutComponent },
-      { path: 'categories', component: CategoriesComponent },
-      { path: 'brands', component: BrandsComponent },
-      { path: 'wishlist', component: WishlistComponent },
-      { path: 'allorders', component: AllordersComponent },
+      { path: 'home', component: HomeComponent, title: 'home' },
+      { path: 'cart', component: CartComponent, title: 'cart' },
+      { path: 'products', component: ProductsComponent, title: 'products' },
+      {
+        path: 'product/details/:id',
+        component: DetailsComponent,
+        title: 'product details',
+      },
+      { path: 'checkout/:id', component: CheckoutComponent, title: 'checkout' },
+      {
+        path: 'categories',
+        component: CategoriesComponent,
+        title: 'categories',
+      },
+      {
+        path: 'categories/product/:id',
+        component: CategoryProductComponent,
+        title: 'product for categories',
+      },
+      { path: 'brands', component: BrandsComponent, title: 'Brands' },
+      {
+        path: 'brands/product/:id',
+        component: BrandProductsComponent,
+        title: 'Product for Brands',
+      },
+      {
+        path: 'wishlist',
+        component: WishlistComponent,
+        title: 'all product favorites',
+      },
+      {
+        path: 'allorders',
+        component: AllordersComponent,
+        title: 'all your orders',
+      },
     ],
   },
   {
@@ -44,12 +70,17 @@ const routes: Routes = [
       {
         path: 'login',
         component: LoginComponent,
+        title: 'login',
       },
-      { path: 'signup', component: RegisterComponent },
-      { path: 'forgetPassword', component: ForgetpasswordComponent },
+      { path: 'signup', component: RegisterComponent, title: 'register' },
+      {
+        path: 'forgetPassword',
+        component: ForgetpasswordComponent,
+        title: 'forgetPassword',
+      },
     ],
   },
-  { path: '**', component: NotfoundComponent },
+  { path: '**', component: NotfoundComponent, title: 'page not found' },
 ];
 
 @NgModule({

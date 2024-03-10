@@ -1,7 +1,6 @@
 import { LoadingInterceptor } from './shared/interceptors/loading.interceptor';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -35,10 +34,11 @@ import { AllordersComponent } from './components/allorders/allorders.component';
 import { ForgetpasswordComponent } from './components/forgetpassword/forgetpassword.component';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { CategoryitemComponent } from './components/categoryitem/categoryitem.component';
-import { CategorydetailsComponent } from './components/categorydetails/categorydetails.component';
 import { BrandComponent } from './components/brand/brand.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { CategoryProductComponent } from './components/category-product/category-product.component';
+import { BrandProductsComponent } from './components/brand-products/brand-products.component';
 
 @NgModule({
   declarations: [
@@ -66,9 +66,10 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     AllordersComponent,
     ForgetpasswordComponent,
     CategoryitemComponent,
-    CategorydetailsComponent,
     BrandComponent,
     WishlistComponent,
+    CategoryProductComponent,
+    BrandProductsComponent,
   ],
   imports: [
     BrowserModule,
@@ -91,7 +92,6 @@ import { NgxSpinnerModule } from 'ngx-spinner';
       useClass: LoadingInterceptor,
       multi: true,
     },
-    
   ],
   bootstrap: [AppComponent],
 })

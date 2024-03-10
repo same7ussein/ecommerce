@@ -7,10 +7,26 @@ import { Observable } from 'rxjs';
 })
 export class EcommerceDataService {
   constructor(private _HttpClient: HttpClient) {}
-  getAllProducts(numberOfPage: number, limit: number = 40): Observable<any> {
-    return this._HttpClient.get(
-      `https://ecommerce.routemisr.com/api/v1/products?limit=${limit}&page=${numberOfPage}`
-    );
+  getAllProducts(
+    numberOfPage: number,
+    limit: number = 40,
+    categoryId: number = 0,
+    brandId: number = 0
+  ): Observable<any> {
+    if (categoryId == 0 && brandId == 0) {
+      return this._HttpClient.get(
+        `https://ecommerce.routemisr.com/api/v1/products?limit=${limit}&page=${numberOfPage}`
+      );
+    } else if (brandId != 0) {
+      return this._HttpClient.get(
+        `https://ecommerce.routemisr.com/api/v1/products?limit=${limit}&page=${numberOfPage}&brand=${brandId}`
+      );
+    } else {
+      return this._HttpClient.get(
+        `https://ecommerce.routemisr.com/api/v1/products?limit=${limit}&page=${numberOfPage}&category[in]=${categoryId}`
+      );
+    }
+   
   }
 
   getProductDetails(id: string): Observable<any> {
@@ -24,16 +40,21 @@ export class EcommerceDataService {
       'https://ecommerce.routemisr.com/api/v1/categories'
     );
   }
-
-  getAllSubCategory(): Observable<any> {
+  getSpecificCategory(id: string): Observable<any> {
     return this._HttpClient.get(
-      `https://ecommerce.routemisr.com/api/v1/subcategories`
+      `https://ecommerce.routemisr.com/api/v1/categories/${id}`
     );
   }
 
   getAllBrand(): Observable<any> {
     return this._HttpClient.get(
       `https://ecommerce.routemisr.com/api/v1/brands`
+    );
+  }
+
+  getSpecificBrand(id: string): Observable<any> {
+    return this._HttpClient.get(
+      `https://ecommerce.routemisr.com/api/v1/brands/${id}`
     );
   }
 }

@@ -1,0 +1,7 @@
+<section>
+    <div class="d-flex gap-3 mb-3">
+        <img width="200" height="200" [src]="CategoryData.image"  [alt]="CategoryData.name">
+        <h2 class="text-main">{{CategoryData.name}}</h2>
+    </div>
+    <app-products [categoryId]="categoryId"></app-products>
+</section>

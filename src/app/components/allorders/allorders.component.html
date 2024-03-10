@@ -1,1 +1,61 @@
-<p>allorders works!</p>
+<section>
+    <h1 class="text-center text-main">All Orders</h1>
+    <div class="w-75  m-auto all-order rounded-3 p-4 overflow-hidden mb-3"
+        *ngFor="let item of allorders; let i = index">
+        <div class="d-flex justify-content-between flex-wrap align-items-start">
+            <ul class="list-unstyled">
+                <li><strong>Name : </strong> <span>{{item.user.name}}</span></li>
+                <li><strong>City : </strong> <span>{{item.shippingAddress.city}}</span></li>
+                <li><strong>isPaid : </strong> <i *ngIf="item.isPaid else nopaid"
+                        class="fa-solid fa-check check-icon"></i>
+                    <ng-template #nopaid>
+                        <i class="fa-solid fa-xmark close-icon check-icon"></i>
+                    </ng-template>
+                </li>
+                <li><strong>Phone : </strong> <span>{{item.shippingAddress.phone}}</span></li>
+            </ul>
+            <ul class="list-unstyled">
+                <li><strong>Details : </strong> <span lacement="top"
+                        [ngbTooltip]="item.shippingAddress.details">{{item.shippingAddress.details.split("
+                        ").slice(0,6).join("
+                        ")}}</span></li>
+                <li><strong>paymentMethodType : </strong> <span>{{item.paymentMethodType}}</span></li>
+                <li><strong>isDelivered : </strong> <i *ngIf="item.isDelivered else nodeliv"
+                        class="fa-solid fa-check check-icon"></i>
+                    <ng-template #nodeliv>
+                        <i class="fa-solid fa-xmark close-icon check-icon"></i>
+                    </ng-template>
+                </li>
+                <li><strong> totalOrderPrice: </strong> <span>{{item.totalOrderPrice}} EGP</span></li>
+            </ul>
+
+            <button (click)="toggleDetails(i)" class="btn-main">Show more <i
+                    class="fa-solid fa-chevron-down"></i></button>
+        </div>
+        <div [@slideInOut]="showMoreDetails[i]">
+            <div class="row">
+                <div class="col-md-4 col-lg-3" *ngFor="let prod of item.cartItems">
+                    <div class="product cursor-pointer" [routerLink]="['/product/details',prod.product._id]">
+                        <img class="w-100" [src]="prod.product.imageCover" [alt]="prod.product.title">
+                        <div class="p-2">
+                            <div class="d-flex justify-content-between">
+                                <h3 class="h6 text-main font-sm mt-2"><i class="fa-solid fa-tag"></i>
+                                    {{prod.product.category.name|lowercase}}</h3>
+                                <h3 class="h6 text-main font-sm mt-2">count: {{prod.count.toString()|lowercase}}</h3>
+                            </div>
+                            <h4 class="h6" placement="top" [ngbTooltip]="prod.product.title">
+                                {{prod.product.title.split(" ").slice(0,2).join(" ")}}</h4>
+                            <div class="d-flex justify-content-between align-products-center">
+                                <span>{{prod.price}} EGP</span>
+                                <div><i [class.rating-color]="prod.product.ratingsAverage"
+                                        *ngFor="let num of [1,2,3,4,5]" class="fas fa-star"></i>
+                                    <span class="text-muted">{{prod.product.ratingsAverage}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

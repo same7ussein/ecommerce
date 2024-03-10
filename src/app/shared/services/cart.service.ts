@@ -6,10 +6,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class CartService {
-  headers: any = {
-    token: localStorage.getItem('etoken'),
-  };
-
   cartNumber: BehaviorSubject<number> = new BehaviorSubject(0);
 
   constructor(private _HttpClient: HttpClient) {}
@@ -20,14 +16,18 @@ export class CartService {
         productId: idProduct,
       },
       {
-        headers: this.headers,
+        headers: {
+          token: localStorage.getItem('etoken')!,
+        },
       }
     );
   }
 
   getCart(): Observable<any> {
     return this._HttpClient.get(`https://ecommerce.routemisr.com/api/v1/cart`, {
-      headers: this.headers,
+      headers: {
+        token: localStorage.getItem('etoken')!,
+      },
     });
   }
 
@@ -35,7 +35,9 @@ export class CartService {
     return this._HttpClient.delete(
       `https://ecommerce.routemisr.com/api/v1/cart/${id}`,
       {
-        headers: this.headers,
+        headers: {
+          token: localStorage.getItem('etoken')!,
+        },
       }
     );
   }
@@ -47,7 +49,9 @@ export class CartService {
         count: newCount,
       },
       {
-        headers: this.headers,
+        headers: {
+          token: localStorage.getItem('etoken')!,
+        },
       }
     );
   }
@@ -56,7 +60,9 @@ export class CartService {
     return this._HttpClient.delete(
       `https://ecommerce.routemisr.com/api/v1/cart`,
       {
-        headers: this.headers,
+        headers: {
+          token: localStorage.getItem('etoken')!,
+        },
       }
     );
   }
@@ -68,7 +74,9 @@ export class CartService {
         shippingAddress: address,
       },
       {
-        headers: this.headers,
+        headers: {
+          token: localStorage.getItem('etoken')!,
+        },
       }
     );
   }
@@ -79,7 +87,9 @@ export class CartService {
         shippingAddress: address,
       },
       {
-        headers: this.headers,
+        headers: {
+          token: localStorage.getItem('etoken')!,
+        },
       }
     );
   }

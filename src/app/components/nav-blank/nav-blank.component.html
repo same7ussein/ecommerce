@@ -24,6 +24,14 @@
 
             </ul>
             <ul class="navbar-nav ms-auto mt-2 mt-lg-0 align-items-center gap-3">
+
+                <li class="nav-item">
+                    <a class="position-relative" routerLink="/allorders"> <i
+                            class="fa-solid fa-truck text-main fa-2x cursor-pointer"></i>
+                        <span class="badge bg-info cartnumber">{{numberOfOrders}}</span>
+                    </a>
+                </li>
+
                 <li class="nav-item">
                     <a class="position-relative" routerLink="/wishlist"> <i
                             class="fa-solid fa-heart text-main fa-2x cursor-pointer"></i>

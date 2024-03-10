@@ -10,6 +10,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 
 @Injectable()
 export class LoadingInterceptor implements HttpInterceptor {
+  wishlistData: string[] = [];
   constructor(private _NgxSpinnerService: NgxSpinnerService) {}
 
   intercept(
@@ -17,6 +18,7 @@ export class LoadingInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     this._NgxSpinnerService.show();
+
     return next.handle(request).pipe(
       finalize(() => {
         this._NgxSpinnerService.hide();

@@ -30,7 +30,7 @@ export class AuthService {
       let encodeToken: any = localStorage.getItem('etoken');
       let decodeToken: any = jwtDecode(encodeToken);
       this.userData = decodeToken;
-      console.log(decodeToken);
+      return this.userData;
     }
   }
 
@@ -55,7 +55,7 @@ export class AuthService {
     );
   }
 
-  resetPassword(newPassword:object): Observable<any>{
+  resetPassword(newPassword: object): Observable<any> {
     return this._HttpClient.put(
       'https://ecommerce.routemisr.com/api/v1/auth/resetPassword',
       newPassword

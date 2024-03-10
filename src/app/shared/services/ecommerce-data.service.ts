@@ -1,11 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EcommerceDataService {
+  ordersNumber: BehaviorSubject<number> = new BehaviorSubject(0);
+
   constructor(private _HttpClient: HttpClient) {}
   getAllProducts(
     numberOfPage: number,
@@ -26,7 +28,6 @@ export class EcommerceDataService {
         `https://ecommerce.routemisr.com/api/v1/products?limit=${limit}&page=${numberOfPage}&category[in]=${categoryId}`
       );
     }
-   
   }
 
   getProductDetails(id: string): Observable<any> {
@@ -55,6 +56,12 @@ export class EcommerceDataService {
   getSpecificBrand(id: string): Observable<any> {
     return this._HttpClient.get(
       `https://ecommerce.routemisr.com/api/v1/brands/${id}`
+    );
+  }
+
+  getAllorder(id: string): Observable<any> {
+    return this._HttpClient.get(
+      `https://ecommerce.routemisr.com/api/v1/orders/user/${id}`
     );
   }
 }

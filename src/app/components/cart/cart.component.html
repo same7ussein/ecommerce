@@ -9,13 +9,14 @@
     <div class="row border-bottom py-3 " *ngFor="let item of cartDetails.products">
         <div class="col-md-1 rounded-5 overflow-hidden">
             <!-- img -->
-            <img [src]="item.product.imageCover" class="w-100" [alt]="item.product.title">
+            <img [src]="item.product.imageCover" class="w-100 cursor-pointer" [alt]="item.product.title"
+                [routerLink]="['/product/details',item.product._id]">
         </div>
         <div class="col-md-11">
             <div class="d-flex justify-content-between align-items-center">
                 <!-- details -->
                 <div class="">
-                    <h3 class="h5">{{item.product.title.split(" ").slice(0,4).join(" ")}}</h3>
+                    <h3 class="h5 cursor-pointer" [routerLink]="['/product/details',item.product._id]">{{item.product.title.split(" ").slice(0,4).join(" ")}}</h3>
                     <p class="text-main mb-1">{{item.price}} EGP</p>
                     <button #removebtn (click)="removeProduct(item.product._id,removebtn)"
                         class="text-main border-0 p-0"><i class="fa-regular fa-trash-can"></i> remove</button>

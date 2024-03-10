@@ -9,7 +9,9 @@ import { EcommerceDataService } from 'src/app/shared/services/ecommerce-data.ser
   styleUrls: ['./brands.component.css'],
 })
 export class BrandsComponent {
-  constructor(private _EcommerceDataService: EcommerceDataService) {}
+  constructor(
+    private _EcommerceDataService: EcommerceDataService,
+  ) {}
   allBrand: Brand[] = [];
   ngOnInit(): void {
     this._EcommerceDataService.getAllBrand().subscribe({
@@ -20,5 +22,6 @@ export class BrandsComponent {
         console.log(err);
       },
     });
+
   }
 }

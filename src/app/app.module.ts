@@ -39,6 +39,7 @@ import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { CategoryProductComponent } from './components/category-product/category-product.component';
 import { BrandProductsComponent } from './components/brand-products/brand-products.component';
+import { GalleriaModule } from 'primeng/galleria';
 
 @NgModule({
   declarations: [
@@ -85,6 +86,7 @@ import { BrandProductsComponent } from './components/brand-products/brand-produc
     FormsModule,
     NgbPaginationModule,
     NgxSpinnerModule,
+    GalleriaModule,
   ],
   providers: [
     {

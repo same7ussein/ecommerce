@@ -6,11 +6,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class WishlistService {
-  headers: any = {
-    token: localStorage.getItem('etoken'),
-  };
-
-  wishNum:BehaviorSubject<number>=new BehaviorSubject(0)
+  wishNum: BehaviorSubject<number> = new BehaviorSubject(0);
   baseUrl: string = 'https://ecommerce.routemisr.com/api/v1/';
   constructor(private _HttpClient: HttpClient) {}
   addToWishlist(id: string): Observable<any> {
@@ -20,19 +16,25 @@ export class WishlistService {
         productId: id,
       },
       {
-        headers: this.headers,
+        headers: {
+          token: localStorage.getItem('etoken')!,
+        },
       }
     );
   }
 
   getWishlist(): Observable<any> {
     return this._HttpClient.get(this.baseUrl + `wishlist`, {
-      headers: this.headers,
+      headers: {
+        token: localStorage.getItem('etoken')!,
+      },
     });
   }
-  removeItemFromWishlist(id:string): Observable<any> {
+  removeItemFromWishlist(id: string): Observable<any> {
     return this._HttpClient.delete(this.baseUrl + `wishlist/${id}`, {
-      headers: this.headers,
+      headers: {
+        token: localStorage.getItem('etoken')!,
+      },
     });
   }
 }

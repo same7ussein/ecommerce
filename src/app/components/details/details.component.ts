@@ -12,6 +12,10 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./details.component.css'],
 })
 export class DetailsComponent implements OnInit {
+  images: any[] | undefined;
+
+  responsiveOptions: any[] | undefined;
+
   ProductDetails: Product = {} as Product;
   productCategoryDetials: Category = {} as Category;
   constructor(
@@ -25,12 +29,26 @@ export class DetailsComponent implements OnInit {
     this._ActivatedRoute.paramMap.subscribe({
       next: (params) => {
         let productId: any = params.get('id');
-        console.log(productId);
         this._EcommerceDataService.getProductDetails(productId).subscribe({
           next: (response) => {
             this.ProductDetails = response.data;
             this.productCategoryDetials = response.data.category;
-            console.log(this.ProductDetails);
+            this.images = this.ProductDetails.images;
+            console.log(this.images);
+            this.responsiveOptions = [
+              {
+                breakpoint: '1024px',
+                numVisible: 4,
+              },
+              {
+                breakpoint: '768px',
+                numVisible: 3,
+              },
+              {
+                breakpoint: '560px',
+                numVisible: 1,
+              },
+            ];
           },
           error: (err: HttpErrorResponse) => {
             console.log(err);

@@ -1,0 +1,18 @@
+.all-order {
+  background-color: #d1e7dd;
+}
+
+.check-icon {
+  background-color: var(--main-color);
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-icon {
+  background-color: red;
+}

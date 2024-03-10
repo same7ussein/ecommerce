@@ -1,5 +1,7 @@
 <div class="product position-relative">
-    <i (click)="addWishlist(product._id)" class="fa-regular fa-heart fa-2x text-main heart-icon cursor-pointer"></i>
+    <i *ngIf="!wishlistData?.includes($any(product._id))" (click)="addWishlist(product._id)"
+        class="fa-regular fa-heart fa-2x text-main heart-icon cursor-pointer"></i>
+    <i *ngIf="wishlistData?.includes($any(product._id))" (click)="removeFromWishlist(product._id)" class="fa-solid fa-heart fa-2x text-main cursor-pointer heart-icon"></i>
     <div class="p-2 cursor-pointer" [routerLink]="['/product/details',product._id]">
         <img [src]="product.imageCover" class="w-100" [alt]="product.title">
         <h3 class="h6 text-main font-sm mt-2"><i class="fa-solid fa-tag"></i> {{product.category?.name|lowercase}}</h3>

@@ -1,3 +1,4 @@
+import { LoadingInterceptor } from './shared/interceptors/loading.interceptor';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -18,7 +19,7 @@ import { NavBlankComponent } from './components/nav-blank/nav-blank.component';
 import { AuthLayoutComponent } from './components/auth-layout/auth-layout.component';
 import { BlankLayoutComponent } from './components/blank-layout/blank-layout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgToastModule } from 'ng-angular-popup';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -37,6 +38,7 @@ import { CategoryitemComponent } from './components/categoryitem/categoryitem.co
 import { CategorydetailsComponent } from './components/categorydetails/categorydetails.component';
 import { BrandComponent } from './components/brand/brand.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -81,8 +83,16 @@ import { WishlistComponent } from './components/wishlist/wishlist.component';
     ToastrModule.forRoot(),
     FormsModule,
     NgbPaginationModule,
+    NgxSpinnerModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true,
+    },
+    
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

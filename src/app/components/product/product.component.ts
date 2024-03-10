@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { WishlistService } from 'src/app/shared/services/wishlist.service';
@@ -9,13 +9,29 @@ import { WishlistService } from 'src/app/shared/services/wishlist.service';
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css'],
 })
-export class ProductComponent {
+export class ProductComponent implements OnInit {
   @Input() product: any;
+
+  wishlistData: string[] = [];
+
   constructor(
     private _CartService: CartService,
     private _ToastrService: ToastrService,
     private _WishlistService: WishlistService
   ) {}
+
+  ngOnInit(): void {
+    this._WishlistService.getWishlist().subscribe({
+      next: (res) => {
+        this._WishlistService.wishNum.next(res.count);
+        const newData = res.data.map((item: any) => item._id);
+        this.wishlistData = newData;
+      },
+      error: (err: HttpErrorResponse) => {
+        console.log(err);
+      },
+    });
+  }
 
   addCart(idProduct: string): void {
     this._CartService.addToCart(idProduct).subscribe({
@@ -33,6 +49,21 @@ export class ProductComponent {
     this._WishlistService.addToWishlist(id).subscribe({
       next: (res) => {
         this._ToastrService.success(res.message);
+        this.wishlistData = res.data;
+        this._WishlistService.wishNum.next(res.data.length);
+      },
+      error: (err: HttpErrorResponse) => {
+        console.log(err);
+      },
+    });
+  }
+
+  removeFromWishlist(id: string): void {
+    this._WishlistService.removeItemFromWishlist(id).subscribe({
+      next: (res) => {
+        this._ToastrService.success(res.message);
+        this.wishlistData = res.data;
+        this._WishlistService.wishNum.next(res.data.length);
       },
       error: (err: HttpErrorResponse) => {
         console.log(err);

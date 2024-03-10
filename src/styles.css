@@ -47,13 +47,6 @@ a:hover {
   overflow: hidden;
 }
 
-.product .btn-main {
-  transform: translateY(150%);
-}
-.product:hover .btn-main {
-  transform: translateY(0);
-}
-
 .product:hover {
   box-shadow: 0 0 10px #11bd1168;
 }
@@ -146,6 +139,28 @@ a:hover {
   color: var(--main-color);
 }
 
-.page-item.active .page-link:hover{
+.page-item.active .page-link:hover {
   color: #fff;
+}
+
+/* product */
+.heart-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  transition: all 0.5s;
+}
+
+/* scroll bar  */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--light-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--main-color);
 }

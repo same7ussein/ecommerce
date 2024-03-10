@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { ToastrService } from 'ngx-toastr';
+import { MessageService } from 'primeng/api';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class RegisterComponent {
     private _AuthService: AuthService,
     private _Router: Router,
     private _FormBuilder: FormBuilder,
-    private _ToastrService: ToastrService
+    private _MessageService: MessageService
   ) {}
 
   isloading: boolean = false;
@@ -52,14 +53,20 @@ export class RegisterComponent {
         next: (response) => {
           if (response.message == 'success') {
             this.isloading = false;
-            this._ToastrService.success('Registered Successfully');
+            this._MessageService.add({
+              severity: 'success',
+              detail: 'Registered Successfully',
+            });
             //we do array to send data with routing
             this._Router.navigate(['/login']);
           }
         },
         error: (err: HttpErrorResponse) => {
           this.isloading = false;
-          this._ToastrService.error(err.error.message);
+          this._MessageService.add({
+            severity: 'error',
+            detail: err.error.message,
+          });
         },
       });
     } else {

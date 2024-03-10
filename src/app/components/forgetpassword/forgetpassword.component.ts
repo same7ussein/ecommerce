@@ -1,9 +1,11 @@
+// forgetpassword.component.ts
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { MenuItem, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-forgetpassword',
@@ -11,37 +13,46 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   styleUrls: ['./forgetpassword.component.css'],
 })
 export class ForgetpasswordComponent {
-  step1: boolean = true;
-  step2: boolean = false;
-  step3: boolean = false;
+  activeIndex: number = 0;
+  steps: MenuItem[];
+
   isloading: boolean = false;
   isloadingResend: boolean = false;
   timer: number = 0;
   timerInterval: any;
 
+  forgetpassword: FormGroup;
+  verifypassword: FormGroup;
+  newpasswpord: FormGroup;
+
   constructor(
     private _FormBuilder: FormBuilder,
     private _AuthService: AuthService,
-    private _ToastrService: ToastrService,
-    private _Router: Router
-  ) {}
+    private _Router: Router,
+    private _MessageService: MessageService
+  ) {
+    this.steps = [
+      { label: 'Find Your Account' },
+      { label: 'Verify Code' },
+      { label: 'Reset Password' },
+    ];
 
-  ngOnInit(): void {
-    this.timer = 0;
+    this.forgetpassword = this._FormBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+    });
+
+    this.verifypassword = this._FormBuilder.group({
+      resetCode: ['', [Validators.required]],
+    });
+
+    this.newpasswpord = this._FormBuilder.group({
+      email: [''],
+      newPassword: [
+        '',
+        [Validators.required, Validators.pattern(/^[A-Z][a-z0-9]{6,20}$/)],
+      ],
+    });
   }
-  forgetpassword: FormGroup = this._FormBuilder.group({
-    email: ['', [Validators.required, Validators.email]],
-  });
-  verifypassword: FormGroup = this._FormBuilder.group({
-    resetCode: ['', [Validators.required]],
-  });
-  newpasswpord: FormGroup = this._FormBuilder.group({
-    email: [''],
-    newPassword: [
-      '',
-      [Validators.required, Validators.pattern(/^[A-Z][a-z0-9]{6,20}$/)],
-    ],
-  });
 
   handlePassword(trueloading: boolean, resendloading: boolean): void {
     if (this.forgetpassword.valid) {
@@ -50,10 +61,11 @@ export class ForgetpasswordComponent {
       this._AuthService.forgetPassword(this.forgetpassword.value).subscribe({
         next: (res) => {
           console.log(res);
-          this._ToastrService.success(res.message);
-          this.step1 = false;
-          this.step2 = true;
-          this.step3 = false;
+          this._MessageService.add({
+            severity: 'success',
+            detail: res.message,
+          });
+          this.activeIndex = 1;
           this.isloading = false;
           this.isloadingResend = false;
           this.startTimer();
@@ -64,7 +76,10 @@ export class ForgetpasswordComponent {
         },
         error: (err: HttpErrorResponse) => {
           if (!err.ok) {
-            this._ToastrService.error(err.error.message);
+            this._MessageService.add({
+              severity: 'error',
+              detail: err.error.message,
+            });
             this.isloading = false;
             this.isloadingResend = false;
           }
@@ -86,17 +101,21 @@ export class ForgetpasswordComponent {
       this._AuthService.verifyPassword(this.verifypassword.value).subscribe({
         next: (res) => {
           if (res.status == 'Success') {
-            this._ToastrService.success(res.status);
-            this.step1 = false;
-            this.step2 = false;
-            this.step3 = true;
+            this._MessageService.add({
+              severity: 'success',
+              detail: res.status,
+            });
+            this.activeIndex = 2;
             this.isloading = false;
             this.stopTimer();
           }
         },
         error: (err: HttpErrorResponse) => {
           if (!err.ok) {
-            this._ToastrService.error(err.error.message);
+            this._MessageService.add({
+              severity: 'error',
+              detail: err.error.message,
+            });
             this.isloading = false;
           }
         },
@@ -121,7 +140,7 @@ export class ForgetpasswordComponent {
   }
 
   enterNewPassword(): void {
-    if (this.forgetpassword.valid) {
+    if (this.newpasswpord.valid) {
       this.isloading = true;
       let newpassword = this.newpasswpord.value;
       newpassword.email = this.forgetpassword.value.email;
@@ -131,23 +150,29 @@ export class ForgetpasswordComponent {
           if (res.token) {
             this.isloading = false;
             localStorage.setItem('etoken', res.token);
-            this._ToastrService.success('password reset successfully');
+            this._MessageService.add({
+              severity: 'success',
+              detail: 'password reset successfully',
+            });
             this._Router.navigate(['/login']);
           }
         },
         error: (err: HttpErrorResponse) => {
           if (!err.ok) {
-            this._ToastrService.error(err.error.message);
+            this._MessageService.add({
+              severity: 'error',
+              detail: err.error.message,
+            });
             this.isloading = false;
           }
         },
       });
     } else {
-      this.forgetpassword.markAllAsTouched();
+      this.newpasswpord.markAllAsTouched();
     }
   }
 
   resendCode(): void {
-    this.handlePassword(this.isloading=false,this.isloadingResend=true);
+    this.handlePassword(false, true);
   }
 }

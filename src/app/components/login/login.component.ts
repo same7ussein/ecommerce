@@ -1,13 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { MessageService } from 'primeng/api';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
@@ -20,7 +16,7 @@ export class LoginComponent {
     private _AuthService: AuthService,
     private _Router: Router,
     private _FormBuilder: FormBuilder,
-    private _ToastrService: ToastrService
+    private _MessageService: MessageService
   ) {}
   isloading: boolean = false;
 
@@ -39,7 +35,10 @@ export class LoginComponent {
         next: (response) => {
           if (response.message == 'success') {
             this.isloading = false;
-            this._ToastrService.success('login Successfully');
+            this._MessageService.add({
+              severity: 'success',
+              detail: 'login Successfully',
+            });
             localStorage.setItem('etoken', response.token);
             this._AuthService.decodeUserData();
             this._Router.navigate(['/home']);
@@ -47,7 +46,10 @@ export class LoginComponent {
         },
         error: (err: HttpErrorResponse) => {
           this.isloading = false;
-          this._ToastrService.error(err.error.message);
+          this._MessageService.add({
+            severity: 'error',
+            detail: err.error.message,
+          });
         },
       });
     } else {

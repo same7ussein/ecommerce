@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { MessageService } from 'primeng/api';
 import { Cart } from 'src/app/shared/interfaces/cart';
 import { CartService } from 'src/app/shared/services/cart.service';
 
@@ -13,8 +14,8 @@ export class CartComponent implements OnInit {
   cartDetails: Cart | null = null;
   constructor(
     private _CartService: CartService,
-    private _ToastrService: ToastrService,
-    private _Renderer2: Renderer2
+    private _Renderer2: Renderer2,
+    private _MessageService: MessageService
   ) {}
   ngOnInit(): void {
     this._CartService.getCart().subscribe({
@@ -37,7 +38,10 @@ export class CartComponent implements OnInit {
       next: (res) => {
         console.log(res.data);
         this.cartDetails = res.data;
-        this._ToastrService.success('removed successfully');
+        this._MessageService.add({
+          severity: 'success',
+          detail: 'removed successfully',
+        });
         // Check if cart is empty after removing item
         console.log(!this.cartDetails?.products.length);
         this._Renderer2.removeAttribute(element, 'disabled');

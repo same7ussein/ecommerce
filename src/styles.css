@@ -167,3 +167,8 @@ a:hover {
 }
 
 
+/* steps from prime ng  */
+.p-steps .p-steps-item.p-highlight .p-steps-number {
+  background: var(--main-color) !important;
+  color: #ffffff;
+}

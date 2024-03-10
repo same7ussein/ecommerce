@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { EcommerceDataService } from 'src/app/shared/services/ecommerce-data.service';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { ToastrService } from 'ngx-toastr';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-details',
@@ -22,7 +23,7 @@ export class DetailsComponent implements OnInit {
     private _ActivatedRoute: ActivatedRoute,
     private _EcommerceDataService: EcommerceDataService,
     private _CartService: CartService,
-    private _ToastrService: ToastrService
+    private _MessageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -64,7 +65,10 @@ export class DetailsComponent implements OnInit {
   addCart(idProduct: string): void {
     this._CartService.addToCart(idProduct).subscribe({
       next: (res) => {
-        this._ToastrService.success(res.message);
+        this._MessageService.add({
+          severity: 'success',
+          detail: res.message,
+        });
         this._CartService.cartNumber.next(res.numOfCartItems);
       },
       error: (err: HttpErrorResponse) => {

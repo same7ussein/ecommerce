@@ -40,6 +40,10 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { CategoryProductComponent } from './components/category-product/category-product.component';
 import { BrandProductsComponent } from './components/brand-products/brand-products.component';
 import { GalleriaModule } from 'primeng/galleria';
+import { StepsModule } from 'primeng/steps';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { SkeletonModule } from 'primeng/skeleton';
 
 @NgModule({
   declarations: [
@@ -87,6 +91,9 @@ import { GalleriaModule } from 'primeng/galleria';
     NgbPaginationModule,
     NgxSpinnerModule,
     GalleriaModule,
+    StepsModule,
+    ToastModule,
+    SkeletonModule,
   ],
   providers: [
     {
@@ -94,6 +101,7 @@ import { GalleriaModule } from 'primeng/galleria';
       useClass: LoadingInterceptor,
       multi: true,
     },
+    MessageService,
   ],
   bootstrap: [AppComponent],
 })

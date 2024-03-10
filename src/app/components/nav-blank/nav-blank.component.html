@@ -1,50 +1,52 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top z-3">
     <div class="container-fluid">
         <a class="navbar-brand"><img src="./assets/images/freshcart-logo.svg" alt=""></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav me-auto my-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link text-capitalize" routerLink="home" routerLinkActive="active-link">home</a>
+                    <a class="nav-link text-capitalize px-3" routerLink="home" routerLinkActive="active-link">home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-capitalize" routerLink="products"
+                    <a class="nav-link text-capitalize px-3" routerLink="products"
                         routerLinkActive="active-link">products</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-capitalize" routerLink="categories"
+                    <a class="nav-link text-capitalize px-3" routerLink="categories"
                         routerLinkActive="active-link">categories</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-capitalize" routerLink="brands" routerLinkActive="active-link">brands</a>
+                    <a class="nav-link text-capitalize px-3" routerLink="brands"
+                        routerLinkActive="active-link">brands</a>
                 </li>
 
             </ul>
-            <ul class="navbar-nav ms-auto mt-2 mt-lg-0 align-items-center gap-3">
+            <ul class="navbar-nav ms-auto mt-2 mt-lg-0 align-items-md-center gap-3">
 
-                <li class="nav-item">
+                <li class="nav-item px-3 px-md-0">
                     <a class="position-relative" routerLink="/allorders"> <i
                             class="fa-solid fa-truck text-main fa-2x cursor-pointer"></i>
                         <span class="badge bg-info cartnumber">{{numberOfOrders}}</span>
                     </a>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item px-3 px-md-0">
                     <a class="position-relative" routerLink="/wishlist"> <i
                             class="fa-solid fa-heart text-main fa-2x cursor-pointer"></i>
                         <span class="badge bg-info cartnumber">{{wishNumber}}</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item px-3 px-md-0">
                     <a routerLink="/cart" class="position-relative"><i class="fas fa-cart-shopping text-main fa-2x"></i>
                         <span class="badge bg-info cartnumber">{{cartNumber}}</span>
                     </a>
                 </li>
                 <li class="nav-item" (click)="logOutUser()">
-                    <span class="nav-link cursor-pointer">SignOut</span>
+                    <span class="nav-link cursor-pointer px-3">SignOut</span>
                 </li>
             </ul>
         </div>

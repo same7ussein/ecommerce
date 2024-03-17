@@ -25,8 +25,8 @@ const routes: Routes = [
     canActivate: [authGuard],
     component: BlankLayoutComponent,
     children: [
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
-      { path: 'home', component: HomeComponent, title: 'home' },
+      { path: '', redirectTo: 'home', pathMatch: 'full'},
+      { path: 'home', component:HomeComponent, title: 'home' },
       { path: 'cart', component: CartComponent, title: 'cart' },
       { path: 'products', component: ProductsComponent, title: 'products' },
       {
@@ -80,7 +80,7 @@ const routes: Routes = [
       },
     ],
   },
-  { path: '**', component: NotfoundComponent, title: 'page not found' },
+  { path: '**', component: NotfoundComponent, title: 'page not found'},
 ];
 
 @NgModule({

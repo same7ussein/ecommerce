@@ -3,9 +3,9 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
-import { ToastrService } from 'ngx-toastr';
 import { MessageService } from 'primeng/api';
 import { AuthService } from 'src/app/shared/services/auth.service';
+
 
 @Component({
   selector: 'app-register',
@@ -57,7 +57,6 @@ export class RegisterComponent {
               severity: 'success',
               detail: 'Registered Successfully',
             });
-            //we do array to send data with routing
             this._Router.navigate(['/login']);
           }
         },

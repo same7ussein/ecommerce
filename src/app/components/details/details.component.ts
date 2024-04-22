@@ -4,7 +4,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EcommerceDataService } from 'src/app/shared/services/ecommerce-data.service';
 import { CartService } from 'src/app/shared/services/cart.service';
-import { ToastrService } from 'ngx-toastr';
 import { MessageService } from 'primeng/api';
 
 @Component({

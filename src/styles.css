@@ -19,6 +19,7 @@ body {
 .nav-link {
   transition: unset !important;
 }
+
 .active-link {
   background-color: var(--main-color) !important;
   color: var(--light-color) !important;

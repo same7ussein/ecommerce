@@ -2,7 +2,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { MessageService } from 'primeng/api';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
@@ -17,9 +16,9 @@ export class LoginComponent {
     private _Router: Router,
     private _FormBuilder: FormBuilder,
     private _MessageService: MessageService
-  ) {}
+  ) { }
+  
   isloading: boolean = false;
-
   loginForm: FormGroup = this._FormBuilder.group({
     email: ['', [Validators.required, Validators.email]],
     password: [
